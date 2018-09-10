@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1> 
-    <h2>{{ksg}}</h2>   
-    <el-button @click="show = !show">Click Me</el-button>
+    <h1>子组件:{{ msg }}</h1> 
+    <h2>子组件:{{ksg}}</h2>   
+    <!-- <el-button @click="show = !show">Click Me</el-button>
     <div style="display: flex; margin-top: 20px; height: 100px;">
       <transition name="el-fade-in-linear">
         <div v-show="show" class="transition-box">.el-fade-in-linear</div>
@@ -23,20 +23,20 @@
 		    layout="prev, pager, next"
 		    :total="100" :page-size='5' @current-change='page'>
 		  </el-pagination>
-		</div>
+		</div> -->
     
      <!--tab-->
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
 		    <el-tab-pane label="用户管理" name="first">用户管理233233</el-tab-pane>
 		    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
 		    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
 		    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
-		</el-tabs>
+		</el-tabs> -->
      <!--tab end-->
-    <div class="test" @click="tabtest(activeName)">点击后改变tab选框</div>
-    <div @click="father">子改变父亲</div>
-    <div style="color:red">父组件改变子{{msg}}</div>
-    <div>兄弟组件传过来的{{listnm}}</div>
+    <!-- <div class="test" @click="tabtest(activeName)">点击后改变tab选框</div> -->
+    <div @click="father">子组件:子改变父亲的值</div>
+    <!-- <div style="color:red">父组件改变子{{msg}}</div>
+    <div>子组件：兄弟组件传过来的{{listnm}}</div> -->
   </div>
 </template>
 
@@ -73,7 +73,7 @@ export default {
 	      	this.activeName='first';	      	
 	      },
 	      test:function(parm){
-	      	this.ksg=parm;
+ 	      	this.ksg=parm;
 	      },
 	      father(){
 	      	this.$emit('pops',this.emit)

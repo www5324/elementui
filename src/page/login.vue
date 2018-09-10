@@ -9,7 +9,7 @@
             <i slot="prefix" class="icon iconfont icon-people loginwd"></i>
           </el-input>
           <el-input
-              placeholder="请输入密码" class="mt10" v-model="form.pass">
+              placeholder="请输入密码" class="mt10" v-model="form.pass" type="password">
             <i slot="prefix" class="icon iconfont icon-lock loginwd"></i>
           </el-input>
           <el-button type="primary" class="width100 mt10"  @click="loginbtn()">登录</el-button>
@@ -31,6 +31,8 @@
 </style>
 <script>
 //import '../assets/css/iconfont.css';
+import {mapState,mapMutations} from 'vuex';
+import axios from 'axios';
 export default {
   name:'login', 
   data(){
@@ -42,20 +44,37 @@ export default {
     }
   },
   methods:{
+    ...mapMutations(["seinfo"]),
     loginbtn()
       {
        
-        if(this.form.name=="wujia"&&this.form.pass=="123456")
-        {
-          this.$store.state.loginuse=true;
-           let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
-            this.$router.push({
-			                            path:redirect,
-			                          });
-        }
-        else{
-          alert("账户名或密码不正确!");
-        }
+        // if(this.form.name=="wujia"&&this.form.pass=="123456")
+        // {
+        //   this.$store.state.loginuse=true;
+        //    let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
+        //     this.$router.push({
+			  //                           path:redirect,
+        //                         });
+        
+        // }
+        // else{
+        //   alert("账户名或密码不正确!");
+        // }
+        axios.post('/api/post',{name:this.form.name,password:this.form.pass}).then((data)=>{
+          if(data.status=="200")
+          {
+            this.seinfo(this.form.name);
+            console.log(this.$store.state)
+            let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
+                this.$router.push({
+                                    path:redirect,
+                                  });
+          }
+        })
+        
+				
+
+
       }
   }, 
   mounted(){

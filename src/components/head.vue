@@ -2,6 +2,10 @@
     <div >
         <header class="fbox">
             <div class="container">
+               <div>
+                 {{$store.state.loginuse}}
+                 <a href="javascript:" @click="lgquit()">退出</a>
+              </div>
                <a href="javascript:"><img src="../../static/img/finwiselogo.png"/></a>
             </div>
         </header>
@@ -90,6 +94,7 @@ li {
 }
 </style>
 <script>
+import {mapState,mapMutations} from 'vuex';
 export default {
   data() {
     return {
@@ -129,11 +134,18 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['quit']),
     add() {
       this.wendu++;
     },
     reduce() {
       this.wendu--;
+    },
+    lgquit(){
+         this.quit()
+         this.$router.push({
+                                    path:'/login',
+                                  });  
     }
   },
   computed: {

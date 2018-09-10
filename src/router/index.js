@@ -9,8 +9,7 @@ import main from '@/page/main'
 import table from '@/page/table'
 import tablenm from '@/page/tablenm'
 import flex from '@/components/flex'
-
-
+import reg from '@/page/reg'
 Vue.use(Router)
 
 export default new Router({
@@ -20,6 +19,12 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld,
       leaf: true,         
+    },
+    {
+      path:'/reg',
+      name:'reg',
+      component:reg,
+      leaf:false
     },
     {
       path: '/admin',
@@ -55,6 +60,9 @@ export default new Router({
       name: 'findex',
       component:findex,
       leaf: true, 
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+     },
     }, 
     {
      path:'/flex',

@@ -1,13 +1,13 @@
 <template>
   <div>
-        <div>我是首页</div>
+        <div>父组件:我是首页</div>
         <v-hello ref='test' @pops='fdatas' :msg='vdata'></v-hello>
-        <v-model></v-model>
-        <a href="javascript:" @click="add()">点击</a>
+        <!-- <v-model></v-model> -->
+        <a href="javascript:" @click="add()">父组件:点击</a>
         <div v-text='fdata'></div>
-        <div @click="kclick()">试试pops能不能点击改变子组件的值</div>
-        <div ref='mdiv'>再试一下ref的情况</div>
-        <a href="javascript:" @click="reftest()">ref引用元素</a>
+        <div @click="kclick()">父组件：试试pops能不能点击改变子组件的值</div>
+        <div ref='mdiv'>父组件：再试一下ref的情况</div>
+        <a href="javascript:" @click="reftest()">父组件：ref引用元素</a>
   </div>  
 </template>
 <style>
@@ -21,8 +21,8 @@ export default {
     name:'index',
     data(){
       return{
-        fdata:'我可是的父亲组件里边的哟',
-        vdata:'props传值问题',
+        fdata:'父组值：我可是的父亲组件里边的哟',
+        vdata:'父组传值：props传值问题',
       }
     },
     components:{
@@ -31,7 +31,7 @@ export default {
     },
     methods:{
     	add(){
-        console.log(this.$refs.test.msg);
+        //console.log(this.$refs.test.msg);
     		this.$refs.test.test("改变子组件的值");   //父亲组件调用子组件里的方法和data里边的值。
     	},
     	fdatas(value){

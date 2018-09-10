@@ -1,7 +1,7 @@
 <template>
       <div>
           <div>{{name}}</div>
-          <div @click='send()'>向hello组件传参数</div>
+          <div @click='send()'>平级组件：向hello组件传参数</div>
      </div>    
 </template>
 <style>
