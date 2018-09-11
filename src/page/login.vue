@@ -12,6 +12,10 @@
               placeholder="请输入密码" class="mt10" v-model="form.pass" type="password">
             <i slot="prefix" class="icon iconfont icon-lock loginwd"></i>
           </el-input>
+          <div class="tl mt10">
+            <el-checkbox v-model="form.checked">记主密码</el-checkbox>
+            <a href="javascript:">忘记密码</a>
+          </div>
           <el-button type="primary" class="width100 mt10"  @click="loginbtn()">登录</el-button>
         </form>
       </div>
@@ -28,6 +32,7 @@
 .f24{font-size:24px;}
 .width100{width:100%;}
 .tl{text-align: left}
+.tr{text-align: right}
 </style>
 <script>
 //import '../assets/css/iconfont.css';
@@ -39,7 +44,8 @@ export default {
     return {
        form:{
          name:"",
-         pass:""
+         pass:"",
+         checked:false
        }
     }
   },
@@ -61,20 +67,19 @@ export default {
         //   alert("账户名或密码不正确!");
         // }
         axios.post('/api/post',{name:this.form.name,password:this.form.pass}).then((data)=>{
-          if(data.status=="200")
+          console.log(data)          
+          if(data.status=="200"&&data.data.length>0)
           {
             this.seinfo(this.form.name);
-            console.log(this.$store.state)
-            let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
+              let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
                 this.$router.push({
                                     path:redirect,
                                   });
           }
+          else{
+             alert("密码或者账号不证确");
+          }
         })
-        
-				
-
-
       }
   }, 
   mounted(){

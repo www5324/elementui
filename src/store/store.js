@@ -31,5 +31,19 @@ export const store = new Vuex.Store({
             sessionStorage.removeItem("name"); 
             sessionStorage.setItem("loginoff",false);           
         }
+    }, 
+    getters:{
+        loginused:function(state)
+        {
+            return state.loginuse+"先生！"
+        }
     },
+    actions:{
+        actionadd:function(context){
+            context.commit('add')
+        },
+        actionremove:function({commit}){
+            commit('remove')
+        }
+    }   
 });
