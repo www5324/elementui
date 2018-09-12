@@ -70,7 +70,13 @@ export default {
           console.log(data)          
           if(data.status=="200"&&data.data.length>0)
           {
+
             this.seinfo(this.form.name);
+            var obj={}
+            obj.name=this.form.name;
+            obj.password=this.form.pass;
+            var tmpdata=JSON.stringify(obj)
+            localStorage.setItem("logininform",tmpdata);
               let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
                 this.$router.push({
                                     path:redirect,
@@ -83,7 +89,14 @@ export default {
       }
   }, 
   mounted(){
-   
+      var logininform=JSON.parse(localStorage.getItem("logininform"));
+      console.log(logininform)
+      if(logininform)
+      {
+         this.form.name=logininform.name;
+         this.form.pass=logininform.password;
+      }
+      
   }
   
 

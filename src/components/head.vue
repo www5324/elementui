@@ -140,7 +140,7 @@ export default {
     }
   },
   methods: {
-    //...mapMutations(['quit','add','remove']),
+    ...mapMutations(['quit','add','remove']),
     ...mapActions(['actionadd','actionremove']),    
     add() {
       this.wendu++;

@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         'loginoff':sessionStorage.getItem("loginoff")?sessionStorage.getItem("loginoff"):false,
-        'loginuse':sessionStorage.getItem("name"),
-        count:1
+        'loginuse':sessionStorage.getItem("name"),        
+         count:1
         //放置公用状态
     },
     mutations:{
@@ -23,6 +23,8 @@ export const store = new Vuex.Store({
             state.loginoff=true,
             sessionStorage.setItem("name",usename);
             sessionStorage.setItem("loginoff",true);
+            var obj={}
+           
         },
         quit(state,usename)
         {
