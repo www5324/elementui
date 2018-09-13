@@ -16,7 +16,7 @@
             <el-checkbox v-model="form.checked">记主密码</el-checkbox>
             <a href="javascript:">忘记密码</a>
           </div>
-          <el-button type="primary" class="width100 mt10"  @click="loginbtn()">登录</el-button>
+          <el-button type="primary" class="width100 mt10" @keyup.enter="loginbtn()"  @click="loginbtn()">登录</el-button>
         </form>
       </div>
     </div>
@@ -38,6 +38,8 @@
 //import '../assets/css/iconfont.css';
 import {mapState,mapMutations} from 'vuex';
 import axios from 'axios';
+import md5 from 'js-md5';
+let Base64 = require('js-base64').Base64;
 export default {
   name:'login', 
   data(){
@@ -71,12 +73,19 @@ export default {
           if(data.status=="200"&&data.data.length>0)
           {
 
-            this.seinfo(this.form.name);
-            var obj={}
-            obj.name=this.form.name;
-            obj.password=this.form.pass;
-            var tmpdata=JSON.stringify(obj)
-            localStorage.setItem("logininform",tmpdata);
+              this.seinfo(this.form.name);
+              if(this.form.checked)
+              {
+                var obj={}
+                obj.name=Base64.encode(this.form.name);
+                obj.password=Base64.encode(this.form.pass);
+                console.log(obj.password);            
+                var tmpdata=JSON.stringify(obj)
+                localStorage.setItem("logininform",tmpdata);
+              }else
+              {
+                    localStorage.removeItem("logininform");
+              }            
               let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
                 this.$router.push({
                                     path:redirect,
@@ -90,11 +99,11 @@ export default {
   }, 
   mounted(){
       var logininform=JSON.parse(localStorage.getItem("logininform"));
-      console.log(logininform)
       if(logininform)
       {
-         this.form.name=logininform.name;
-         this.form.pass=logininform.password;
+         this.form.name=Base64.decode(logininform.name);
+         this.form.pass=Base64.decode(logininform.password);
+         this.form.checked=true;
       }
       
   }
