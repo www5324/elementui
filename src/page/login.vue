@@ -2,7 +2,7 @@
 <div>
   <div class="login">
       <div class="loginbox">       
-        <form>
+        <form @keyup.enter="loginbtn()">
            <h3 class="tl"><strong class="f24">欢迎！</strong>登录</h3>
             <el-input
               placeholder="请输入账户名" v-model="form.name">
@@ -37,6 +37,7 @@
 <script>
 //import '../assets/css/iconfont.css';
 import {mapState,mapMutations} from 'vuex';
+import router from '@/router/index'
 import axios from 'axios';
 import md5 from 'js-md5';
 let Base64 = require('js-base64').Base64;
@@ -104,8 +105,7 @@ export default {
          this.form.name=Base64.decode(logininform.name);
          this.form.pass=Base64.decode(logininform.password);
          this.form.checked=true;
-      }
-      
+      }      
   }
   
 

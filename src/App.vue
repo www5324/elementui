@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="cf">
-    <transition :name="transitionName">
+    <transition :name="transitionName" mode="out-in">
       <router-view class="child-view"></router-view>
    </transition>
   </div>
