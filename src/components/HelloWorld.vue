@@ -35,8 +35,9 @@
      <!--tab end-->
     <!-- <div class="test" @click="tabtest(activeName)">点击后改变tab选框</div> -->
     <div @click="father">子组件:子改变父亲的值</div>
-    <!-- <div style="color:red">父组件改变子{{msg}}</div>
-    <div>子组件：兄弟组件传过来的{{listnm}}</div> -->
+    <!-- <div style="color:red">父组件改变子{{msg}}</div>-->
+    <div>子组件：兄弟组件传过来的{{listnm}}</div> 
+
   </div>
 </template>
 
@@ -45,9 +46,7 @@ import axios from 'axios';
 //import bus from '../assets/bus.js'
 export default {
   name: 'HelloWorld',
-  props:{
-    msg:"",
-  },
+  props:["msg"],
   data () {
     return {
       //msg: 'Welcome to Your Vue.js App',
@@ -86,6 +85,8 @@ export default {
 //				    	newtype:0,}).then(function(){
 //		   	
 //		   });
+
+
       let that=this;
       this.$root.bus.$on("send",function(val){
                that.listnm=val

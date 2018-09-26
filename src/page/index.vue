@@ -2,7 +2,7 @@
   <div>
         <div>父组件:我是首页</div>
         <v-hello ref='test' @pops='fdatas' :msg='vdata'></v-hello>
-        <!-- <v-model></v-model> -->
+        <v-model></v-model>
         <a href="javascript:" @click="add()">父组件:点击</a>
         <div v-text='fdata'></div>
         <div @click="kclick()">父组件：试试pops能不能点击改变子组件的值</div>
@@ -22,7 +22,7 @@ export default {
     data(){
       return{
         fdata:'父组值：我可是的父亲组件里边的哟',
-        vdata:'父组传值：props传值问题',
+        vdata:'父组传值：props传值问题.',
       }
     },
     components:{
@@ -44,6 +44,10 @@ export default {
       reftest(){
         console.log(this.$refs.mdiv.innerHTML);
       }
+    },
+    mounted()
+    {
+        console.log(this.vdata);
     }
 }
 </script>
