@@ -10,11 +10,12 @@ import table from '@/page/table'
 import tablenm from '@/page/tablenm'
 import flex from '@/components/flex'
 import reg from '@/page/reg'
+import error from '@/page/error'
 Vue.use(Router)
-
 export default new Router({
+  mode:'history',
   routes: [
-    {
+      {
       path: '/HelloWorld',
       name: 'HelloWorld',
       component: HelloWorld,
@@ -24,36 +25,25 @@ export default new Router({
       path:'/reg',
       name:'reg',
       component:reg,
-      leaf:false
+      leaf:true,
     },
     {
       path: '/admin',
       name: '后台管理',
       component: admin,      
       children:[
-            { path: '/admin/main', component: main, name: '主页',hidden:false},
-            {path:'',name: '表格',parent:1001,zu:true},
-            { path: '/admin/tablenm',component: tablenm, name:'表格',zj:1001,hidden:false},
-            { path: '/admin/table',component: table, name:'表格2',zj:1001,hidden:false},
-            {path:'',name: '文章',parent:1002,zu:true}, 
-            {path:'/admin/findex',name: '文章1',component:findex,jz:1002,hidden:false},    
+            { path:'/main', component: main, name: '主页',hidden:false}, 
+            { path:'/tablenm',component: tablenm, name:'表格',zj:1001,hidden:false},
+            {path:'/table',component:table,name:'表格2'}            
       ],
-      leaf: false,     
-    },
-    {
-      path: '/index',
-      name: 'index',
-      component: index,
-      meta: {
-        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
-     },
-     leaf: true, 
-    },
+      leaf:false,     
+    },    
     {
       path: '/login',
       name: 'login',
       component: login,
-      hidden: true 
+      hidden: true,
+      leaf:true, 
     }, 
     {
       path: '/findex',
@@ -70,6 +60,7 @@ export default new Router({
      component:flex,
      leaf: true, 
     },
-    {path:'*',redirect:'/login',hidden: true}
+    {path:'/',component:login,hidden: true,leaf:true},
+    {path:'*',component:error,hidden: true,leaf:true}
   ]
 })

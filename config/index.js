@@ -14,7 +14,7 @@ module.exports = {
       '/api': { 
       changeOrigin: true, 
       // target: ‘http://rap.id.cn/mockjs/20‘, mock地址 
-      target: 'http://10.0.102.95:8082',//服务器地址 
+      target: 'http://192.168.5.121:8082',//服务器地址 
       //target: 'http://www.iv37.com/',//服务器地址 
       pathRewrite: { 
       '^/api':'/' 

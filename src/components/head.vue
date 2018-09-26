@@ -2,17 +2,23 @@
     <div >
         <header class="fbox">
             <div class="container">
+              <div>{{loginuse}}</div>
                <div>
-                 {{$store.state.loginuse}}
+                 {{loginused}}
                  <a href="javascript:" @click="lgquit()">退出</a>
               </div>
                <a href="javascript:"><img src="../../static/img/finwiselogo.png"/></a>
             </div>
         </header>
         <div class="container">
+            <div>
+                <button @click="actionadd()">+</button>
+                <span>{{count}}</span>
+                <button @click="actionremove()">-</button>
+            </div>
             <div class="wendu">
                 <div>{{yifu}}</div>
-                <a href="javascript:" @click="add()">+</a>
+                <a href="javascript:" @click="add()">+</a>    
                 <a href="javascript:" @click="reduce()">-</a>
             </div>
             <div>
@@ -94,7 +100,7 @@ li {
 }
 </style>
 <script>
-import {mapState,mapMutations} from 'vuex';
+import {mapState,mapMutations,mapGetters,mapActions} from 'vuex';
 export default {
   data() {
     return {
@@ -134,7 +140,8 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['quit']),
+    ...mapMutations(['quit','add','remove']),
+    ...mapActions(['actionadd','actionremove']),    
     add() {
       this.wendu++;
     },
@@ -148,7 +155,10 @@ export default {
                                   });  
     }
   },
+  //computed:{...mapState(['loginuse'])},
   computed: {
+    ...mapState(['loginuse','count']),
+    ...mapGetters(['loginused']),
     sortitem: function() {
       return this.arrs.sort(function(a, b) {
         return b - a;

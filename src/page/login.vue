@@ -2,7 +2,7 @@
 <div>
   <div class="login">
       <div class="loginbox">       
-        <form>
+        <form @keyup.enter="loginbtn()">
            <h3 class="tl"><strong class="f24">欢迎！</strong>登录</h3>
             <el-input
               placeholder="请输入账户名" v-model="form.name">
@@ -12,7 +12,11 @@
               placeholder="请输入密码" class="mt10" v-model="form.pass" type="password">
             <i slot="prefix" class="icon iconfont icon-lock loginwd"></i>
           </el-input>
-          <el-button type="primary" class="width100 mt10"  @click="loginbtn()">登录</el-button>
+          <div class="tl mt10">
+            <el-checkbox v-model="form.checked">记主密码</el-checkbox>
+            <a href="javascript:">忘记密码</a>
+          </div>
+          <el-button type="primary" class="width100 mt10" @keyup.enter="loginbtn()"  @click="loginbtn()">登录</el-button>
         </form>
       </div>
     </div>
@@ -28,18 +32,23 @@
 .f24{font-size:24px;}
 .width100{width:100%;}
 .tl{text-align: left}
+.tr{text-align: right}
 </style>
 <script>
 //import '../assets/css/iconfont.css';
 import {mapState,mapMutations} from 'vuex';
+import router from '@/router/index'
 import axios from 'axios';
+import md5 from 'js-md5';
+let Base64 = require('js-base64').Base64;
 export default {
   name:'login', 
   data(){
     return {
        form:{
          name:"",
-         pass:""
+         pass:"",
+         checked:false
        }
     }
   },
@@ -61,24 +70,42 @@ export default {
         //   alert("账户名或密码不正确!");
         // }
         axios.post('/api/post',{name:this.form.name,password:this.form.pass}).then((data)=>{
-          if(data.status=="200")
+          console.log(data)          
+          if(data.status=="200"&&data.data.length>0)
           {
-            this.seinfo(this.form.name);
-            console.log(this.$store.state)
-            let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
+
+              this.seinfo(this.form.name);
+              if(this.form.checked)
+              {
+                var obj={}
+                obj.name=Base64.encode(this.form.name);
+                obj.password=Base64.encode(this.form.pass);
+                console.log(obj.password);            
+                var tmpdata=JSON.stringify(obj)
+                localStorage.setItem("logininform",tmpdata);
+              }else
+              {
+                    localStorage.removeItem("logininform");
+              }            
+              let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
                 this.$router.push({
                                     path:redirect,
                                   });
           }
+          else{
+             alert("密码或者账号不证确");
+          }
         })
-        
-				
-
-
       }
   }, 
   mounted(){
-   
+      var logininform=JSON.parse(localStorage.getItem("logininform"));
+      if(logininform)
+      {
+         this.form.name=Base64.decode(logininform.name);
+         this.form.pass=Base64.decode(logininform.password);
+         this.form.checked=true;
+      }      
   }
   
 

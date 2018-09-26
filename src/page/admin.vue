@@ -11,7 +11,7 @@
         </el-col> 
         <el-col :span="24" class="main">
              <aside class="aside">
-               <el-menu :default-active="$route.path" class="el-menu-vertical-demo" :collapse="isCollapse" router>
+               <el-menu  class="el-menu-vertical-demo" :collapse="isCollapse" router>
                    <template v-for="(item,index1) in $router.options.routes" v-if="!item.hidden">
                          <el-submenu index="index+''" :key="index1" v-if="!item.leaf">
                              <template slot="title">
@@ -40,7 +40,7 @@
              </aside>
              <section class="content-container">
                  <el-col :span="24">
-                     <transition>
+                     <transition name="fade" mode="out-in">
 							<router-view></router-view>
 				   </transition>
                  </el-col>
@@ -73,7 +73,6 @@
         position: absolute;
         top: 60px;
         bottom: 0px;
-        overflow: hidden;
         .aside{
             width:200px;
             .el-menu{height:100%;background:#eef1f6}
@@ -87,11 +86,17 @@
             }
         }
         .content-container{
-            flex:1;
-            overflow-y: auto;
+           width:100%;
         }        
     }
 }
+.fade-enter{transform:translate3d(100px,0px,0px);opacity: 0;}
+.fade-leave{
+  transform:translate3d(-100px,0px,0px);
+  opacity: 1;
+}
+.fade-enter-active{transition:all .5s;}
+.fade-leave-active{transition:all .5s;}
 </style>
 <script>
 export default {
