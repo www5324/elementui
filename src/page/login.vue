@@ -20,19 +20,50 @@
         </form>
       </div>
     </div>
+    <vue-particles
+        color="#fff"
+        :particleOpacity="0.6"
+        :particlesNumber="60"
+        shapeType="edge"
+        :particleSize="4"
+        linesColor="#000"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="0.8"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+        class="lizi"
+      >
+      </vue-particles>
+    <!-- <div id="particles"></div> -->
   </div>
 </template>
 <style scoped>
 @import url('../assets/css/iconfont.css');
 .mt10{margin-top:10px;}
+.lizi{background-image: url('http://www.moo-i.net/upload/world.jpg');background-size:100% 100%;}
 .loginbox{width:20%;height:20%;display: inline-block;position:absolute;left:50%;top:50%;transform: translate3d(-50%,-50%,0)}
-.loginbox form{padding:20px;border:1px solid #ddd;position:relative}
+.loginbox form{padding:20px;border:1px solid #ddd;position:relative;background:#fff;}
 .ponst{width:100%;height:100%;position: absolute;top:0px;left:0px;background:rgba(0,0,0,0.3);z-index:1;pointer-events: none}
 .loginwd{font-size:20px;display: inherit;margin-top: 9px;}
 .f24{font-size:24px;}
 .width100{width:100%;}
 .tl{text-align: left}
 .tr{text-align: right}
+#particles{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #b61924;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50%;
+}
+
 </style>
 <script>
 //import '../assets/css/iconfont.css';
@@ -41,6 +72,7 @@ import router from '@/router/index'
 import axios from 'axios';
 import md5 from 'js-md5';
 let Base64 = require('js-base64').Base64;
+
 export default {
   name:'login', 
   data(){
@@ -105,7 +137,9 @@ export default {
          this.form.name=Base64.decode(logininform.name);
          this.form.pass=Base64.decode(logininform.password);
          this.form.checked=true;
-      }      
+      } 
+     
+
   }
   
 
