@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-head></v-head>
+      <v-head @click.native="test()"></v-head>
     </div>
 </template>
 <style>
@@ -21,6 +21,12 @@ export default{
     mounted(){
    
   },
+  methods:{
+      test(){
+        alert(1)
+      }
+  }
+ 
   
 }
 </script>
