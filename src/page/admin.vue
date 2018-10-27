@@ -36,10 +36,14 @@
                             </template>                                                   
                           </el-submenu>    
                    </template>   
-               </el-menu>     
+               </el-menu>
+                   
              </aside>
              <section class="content-container">
                  <el-col :span="24">
+                      <router-link :to="{path:'/admin'+menu,}">首页</router-link>
+                      <router-link to="/admin/tablenm">表格2</router-link>
+                      <router-link to="/admin/table">表格3</router-link>
                      <transition name="fade" mode="out-in">
 							<router-view></router-view>
 				   </transition>
@@ -99,6 +103,7 @@
 .fade-leave-active{transition:all .5s;}
 </style>
 <script>
+
 export default {
      name:"admin",     
      data()
@@ -106,11 +111,15 @@ export default {
          return {
         isCollapse:false,   //这个用来控制收和折叠
         isRourt:false,
-        gets:true
+        gets:true,
+        menu:"/main"
          }
      },
+     created () {
+   
+     },
      mounted(){
-         console.log(this.$router);
+      console.log(this.$router)
      },
      methods: {
          menuck(index1,index2){

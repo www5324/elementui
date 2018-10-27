@@ -68,11 +68,10 @@
 <script>
 //import '../assets/css/iconfont.css';
 import {mapState,mapMutations} from 'vuex';
-import router from '@/router/index'
+
 import axios from 'axios';
 import md5 from 'js-md5';
 let Base64 = require('js-base64').Base64;
-
 export default {
   name:'login', 
   data(){
@@ -118,8 +117,25 @@ export default {
               }else
               {
                     localStorage.removeItem("logininform");
-              }            
-              let redirect = decodeURIComponent(this.$route.query.redirect ||'/findex');
+              }      
+              let router=[ {
+                path:'/reg2',
+                name: '测试', 
+                component:(resolve) => require(['../components/model.vue'], resolve),
+                          },
+                          {
+                path:'/reg3',
+                name: '测试', 
+                component:(resolve) => require(['../components/model.vue'], resolve),
+                          }
+                          
+                          ] 
+                          var mum=this.$router.options.routes.push(router);
+                                       
+           this.$router.addRoutes(router);
+
+         console.log(this.$router); 
+              let redirect = decodeURIComponent(this.$route.query.redirect ||'/admin');
                 this.$router.push({
                                     path:redirect,
                                   });
