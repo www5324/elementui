@@ -11,6 +11,8 @@ import tablenm from '@/page/tablenm'
 import flex from '@/components/flex'
 import reg from '@/page/reg'
 import error from '@/page/error'
+import user1 from '@/page/user1'
+import user2 from '@/page/user2'
 Vue.use(Router)
  export const arr=[
   {
@@ -32,7 +34,9 @@ Vue.use(Router)
   children:[
         { path:'/main', component: main, name: '主页',hidden:false}, 
         { path:'/tablenm',component: tablenm, name:'表格',zj:1001,hidden:false},
-        {path:'/table',component:table,name:'表格2'}            
+        {path:'/table',component:table,name:'表格2'},
+        { path:'/user1',component:user1, name:'用户管理1'},
+        {path:'/user2',component:user2,name:'用户管理2'}              
   ],
   leaf:false,     
 },    
@@ -84,7 +88,9 @@ export default new Router({
       children:[
             { path:'main', component: main, name: '主页',hidden:false}, 
             { path:'tablenm',component: tablenm, name:'表格',zj:1001,hidden:false},
-            {path:'table',component:table,name:'表格2'}            
+            {path:'table',component:table,name:'表格2'},   
+            { path:'user1',component:user1, name:'用户管理1'},
+            {path:'user2',component:user2,name:'用户管理2'}            
       ],
       leaf:false,     
     },    
@@ -110,7 +116,7 @@ export default new Router({
      component:flex,
      leaf: true, 
     },
-    // {path:'/',component:login,hidden: true,leaf:true},
+     {path:'/',component:login,hidden: true,leaf:true},
     {path:'*',component:error,hidden: true,leaf:true}
   ]
 
