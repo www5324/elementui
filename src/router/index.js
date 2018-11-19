@@ -18,7 +18,7 @@ Vue.use(Router)
   {
   path: '/HelloWorld',
   name: 'HelloWorld',
-  component: HelloWorld,
+  component: HelloWorld,  
   leaf: true,         
 },
 {
@@ -30,7 +30,8 @@ Vue.use(Router)
 {
   path: '/admin',
   name: '后台管理',
-  component: admin,      
+  component: admin, 
+  redirect:'/admin/main',     
   children:[
         { path:'/main', component: main, name: '主页',hidden:false}, 
         { path:'/tablenm',component: tablenm, name:'表格',zj:1001,hidden:false},
@@ -84,7 +85,8 @@ export default new Router({
     {
       path: '/admin',
       name: '后台管理',
-      component: admin,      
+      component: admin,
+      redirect:'/admin/main',      
       children:[
             { path:'main', component: main, name: '主页',hidden:false}, 
             { path:'tablenm',component: tablenm, name:'表格',zj:1001,hidden:false},
