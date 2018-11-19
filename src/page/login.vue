@@ -135,7 +135,7 @@ export default {
            this.$router.addRoutes(router);
 
          console.log(this.$router); 
-              let redirect = decodeURIComponent(this.$route.query.redirect ||'/admin');
+              let redirect = decodeURIComponent(this.$route.query.redirect ||'/admin/main');
                 this.$router.push({
                                     path:redirect,
                                   });

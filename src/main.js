@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './App';
 import { store } from './store/store.js';
 import VueParticles from 'vue-particles'
+
 Vue.use(ElementUI);
 Vue.use(VueParticles) 
 //Vue.config.productionTip = false
