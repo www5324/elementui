@@ -1,6 +1,7 @@
 <template>
     <div>
       <v-head @click.native="test()"></v-head>
+      <drag></drag>
     </div>
 </template>
 <style>
@@ -8,6 +9,7 @@
 </style>
 <script>
 import head from "../components/head"
+import drag from "../components/drag"
 export default{
     name:'index',
     data(){
@@ -17,6 +19,7 @@ export default{
     },
     components:{
       'v-head':head,
+       drag:drag
     },
     mounted(){
    

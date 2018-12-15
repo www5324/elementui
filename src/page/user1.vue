@@ -2,24 +2,19 @@
     <div>
         用户管理1
         <div ref="get" style="width:120px" @click="mdclick">
-            <div>
                 <div v-for="(item,index) in form.list" :key="index">
                     {{item}}
                 </div>
             </div>
-
-        <!-- <a href="javascript:" @click="mast()">点击</a> -->
-        <a href="javscript:" @click="mast2()">点击2</a>
-        <div>
+        <a href="javascript:" @click="mast()">点击</a> 
+         <a href="javscript:" @click="mast2()">点击2</a>
           <form id="formd">
             <div><label>姓名：</label><input type="text" name="name" /></div>
             <input type="file" id="file" name="image2" class="uplandim" ref="upland" @change="uplandim('formd')">
             <a href="javascript:" @click="choseim()" >选择图片</a>
-          </form>  
-
-        </div>
-    </div>
-</template>
+          </form>
+        </div> 
+    </template>
 <style>
 .uplandim {
   display: none;
